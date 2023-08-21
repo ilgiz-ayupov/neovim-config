@@ -1,0 +1,6 @@
+require("options.editor")
+require("options.indents")
+require("options.mouse")
+require("options.number-lines")
+require("options.search")
+require("options.splits")
