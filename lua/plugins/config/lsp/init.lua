@@ -23,8 +23,30 @@ return {
       severity_sort = true,
     },
     servers = {
+      -- html
+      emmet_language_server = {},
+      html = {},
+
+      -- css / scss / less
+      cssls = {},
+
+      -- typescript, javascript
       tsserver = {},
+
+      -- eslint
+      eslint = {
+        on_attach = function(_, bufnr)
+          vim.api.nvim_create_autocmd("BufWritePre", {
+            buffer = bufnr,
+            command = "EslintFixAll",
+          })
+        end,
+      },
+
+      -- php
       intelephense = {},
+
+      -- lua
       lua_ls = {
         settings = {
           Lua = {
@@ -40,13 +62,10 @@ return {
           },
         },
       },
+
+      -- json
+      jsonls = {},
     },
-    autoformat = true,
-    format = {
-      formatting_options = nil,
-      timeout_ms = nil,
-    },
-    setup = {},
   },
   config = function(_, opts)
     -- diagnostics
@@ -79,15 +98,6 @@ return {
         capabilities = vim.deepcopy(capabilities),
       }, servers[server] or {})
 
-      if opts.setup[server] then
-        if opts.setup[server](server, server_opts) then
-          return
-        end
-      elseif opts.setup["*"] then
-        if opts.setup["*"](server, server_opts) then
-          return
-        end
-      end
       require("lspconfig")[server].setup(server_opts)
     end
 

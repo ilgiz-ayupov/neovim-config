@@ -3,6 +3,14 @@ local M = {}
 M._keys = nil
 
 function M.get()
+  function M.diagnostic_goto(next, severity)
+    local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
+    severity = severity and vim.diagnostic.severity[severity] or nil
+    return function()
+      go({ severity = severity })
+    end
+  end
+
   if not M._keys then
     M._keys = {
       {
@@ -144,14 +152,6 @@ function M.on_attach(_, buffer)
     opts.silent = opts.silent ~= false
     opts.buffer = buffer
     vim.keymap.set(keys.mode or "n", keys[1], keys[2], opts)
-  end
-end
-
-function M.diagnostic_goto(next, severity)
-  local go = next and vim.diagnostic.goto_next or vim.diagnostic.goto_prev
-  severity = severity and vim.diagnostic.severity[severity] or nil
-  return function()
-    go({ severity = severity })
   end
 end
 
