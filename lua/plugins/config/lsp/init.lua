@@ -23,17 +23,15 @@ return {
       severity_sort = true,
     },
     servers = {
-      -- html
       emmet_language_server = {},
       html = {},
 
-      -- css / scss / less
       cssls = {},
+      tailwindcss = {},
 
-      -- typescript, javascript
       tsserver = {},
+      jsonls = {},
 
-      -- eslint
       eslint = {
         on_attach = function(_, bufnr)
           vim.api.nvim_create_autocmd("BufWritePre", {
@@ -43,10 +41,18 @@ return {
         end,
       },
 
-      -- php
-      intelephense = {},
+      gopls = {
+        settings = {
+          gopls = {
+            completeUnimported = true,
+            usePlaceholders = true,
+            analyses = {
+              unusedparams = true,
+            },
+          },
+        },
+      },
 
-      -- lua
       lua_ls = {
         settings = {
           Lua = {
@@ -62,9 +68,6 @@ return {
           },
         },
       },
-
-      -- json
-      jsonls = {},
     },
   },
   config = function(_, opts)
@@ -101,7 +104,7 @@ return {
       require("lspconfig")[server].setup(server_opts)
     end
 
-    -- get all the servers that are available thourgh mason-lspconfig
+    -- получить все доступные серверы через mason-lspconfig
     local have_mason, mlsp = pcall(require, "mason-lspconfig")
     local all_mslp_servers = {}
     if have_mason then
@@ -112,7 +115,7 @@ return {
     for server, server_opts in pairs(servers) do
       if server_opts then
         server_opts = server_opts == true and {} or server_opts
-        -- run manual setup if mason=false or if this is a server that cannot be installed with mason-lspconfig
+        -- запустите ручную настройку, если mason=false или если это сервер, который нельзя установить с помощью mason-lspconfig
         if server_opts.mason == false or not vim.tbl_contains(all_mslp_servers, server) then
           setup(server)
         else

@@ -40,6 +40,7 @@ require("lazy").setup({
   require("plugins.config.dressing"),
   require("plugins.config.indent-blankline"),
   require("plugins.config.mini-indentscope"),
+  require("plugins.config.alpha-nvim"),
 
   -- LSP
   require("plugins.config.lsp"),

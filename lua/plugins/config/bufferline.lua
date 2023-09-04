@@ -1,6 +1,10 @@
 return {
   "akinsho/bufferline.nvim",
   event = "VeryLazy",
+  keys = {
+    { "<S-h>", "<cmd>BufferLineCyclePrev<cr>", desc = "Предыдущая вкладка" },
+    { "<S-l>", "<cmd>BufferLineCycleNext<cr>", desc = "Следующая вкладка" },
+  },
   opts = {
     options = {
       mode = "buffers",

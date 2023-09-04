@@ -21,6 +21,9 @@ opt.clipboard = "unnamedplus"
 -- Сохранять историю отмены в файл (команда "u")
 opt.undofile = true
 
+-- Поддержка цветовых схем
+opt.termguicolors = true
+
 -- Показывает полный путь до файла в правом верхнем углу
 opt.winbar = "%=%m %f"
 g.neotree_winbar = 0

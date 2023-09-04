@@ -10,7 +10,7 @@ return {
       sources = {
         nls.builtins.formatting.stylua,
         nls.builtins.formatting.prettierd,
-        nls.builtins.formatting.phpcsfixer,
+        nls.builtins.formatting.gofmt,
       },
       on_attach = function(client, bufnr)
         if client.supports_method("textDocument/formatting") then

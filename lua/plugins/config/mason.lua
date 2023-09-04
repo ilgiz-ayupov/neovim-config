@@ -2,10 +2,12 @@ return {
   "williamboman/mason.nvim",
   cmd = "Mason",
   build = ":MasonUpdate",
+  dependencies = {
+    "mason-org/mason-registry",
+  },
   opts = {
     ensure_installed = {
       "stylua",
-      "php-cs-fixer",
       "prettierd",
     },
   },

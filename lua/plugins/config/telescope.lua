@@ -4,6 +4,8 @@ return {
   dependencies = { "nvim-lua/plenary.nvim" },
   opts = {},
   keys = {
-    { "<leader>/", "<cmd>Telescope live_grep<cr>", desc = "Поиск (root dir)" },
+    { "<leader>ff", "<cmd>Telescope find_files<cr>", desc = "Поиск файлов" },
+    { "<leader>fw", "<cmd>Telescope live_grep<cr>", desc = "Поиск (root dir)" },
+    { "<leader>gb", "<cmd>Telescope git_brances<cr>", desc = "Git ветки" },
   },
 }

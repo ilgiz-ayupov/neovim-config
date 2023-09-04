@@ -15,3 +15,6 @@ map("n", "<C-n>", "<cmd>enew<cr>", { desc = "Новый файл" })
 -- Отмена
 map("n", "<C-z>", "<cmd>undo<cr>", { desc = "Отмена" })
 map("i", "<C-z>", "<Esc><cmd>undo<cr>", { desc = "Отмена" })
+
+-- Копировать
+map("v", "<C-c>", "<cmd><,'>yank<cr>", { desc = "Копировать" })
